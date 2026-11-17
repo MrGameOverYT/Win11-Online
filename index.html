@@ -2,145 +2,24 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Windows 11</title>
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
-
-<div id="desktop">
-  <div id="icons">
-    <div class="dicon" ondblclick="openWin('explorer')"><div class="ico">💻</div><span>Этот компьютер</span></div>
-    <div class="dicon" ondblclick="openWin('recycle')"><div class="ico">🗑️</div><span>Корзина</span></div>
-    <div class="dicon" ondblclick="openWin('edge')"><div class="ico">🌐</div><span>Microsoft Edge</span></div>
-    <div class="dicon" ondblclick="openWin('notepad')"><div class="ico">📝</div><span>Блокнот</span></div>
-  </div>
-
-  <!-- File Explorer -->
-  <div class="win hidden" id="win-explorer" style="left:220px;top:90px;width:620px;height:420px;">
-    <div class="titlebar"><span class="ttl">📁 Этот компьютер</span>
-      <div class="wbtn" onclick="minimize('explorer')">—</div>
-      <div class="wbtn" onclick="toggleMax('explorer')">▢</div>
-      <div class="wbtn close" onclick="closeWin('explorer')">✕</div>
-    </div>
-    <div class="winbody">
-      <div class="explorer">
-        <div class="fe-side">
-          <div>🏠 Главная</div><div>🖥️ Этот компьютер</div><div>📄 Документы</div>
-          <div>🖼️ Изображения</div><div>⬇️ Загрузки</div><div>🎵 Музыка</div>
-        </div>
-        <div class="fe-main">
-          <div class="fe-item"><div class="fe-ico">💾</div>Локальный диск (C:)</div>
-          <div class="fe-item"><div class="fe-ico">📄</div>Документы</div>
-          <div class="fe-item"><div class="fe-ico">🖼️</div>Изображения</div>
-          <div class="fe-item"><div class="fe-ico">⬇️</div>Загрузки</div>
-          <div class="fe-item"><div class="fe-ico">🎵</div>Музыка</div>
-          <div class="fe-item"><div class="fe-ico">🎬</div>Видео</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Notepad -->
-  <div class="win hidden" id="win-notepad" style="left:380px;top:140px;width:480px;height:340px;">
-    <div class="titlebar"><span class="ttl">📝 Блокнот</span>
-      <div class="wbtn" onclick="minimize('notepad')">—</div>
-      <div class="wbtn" onclick="toggleMax('notepad')">▢</div>
-      <div class="wbtn close" onclick="closeWin('notepad')">✕</div>
-    </div>
-    <div class="winbody"><textarea class="notepad" placeholder="Начните печатать..."></textarea></div>
-  </div>
-
-  <!-- Edge -->
-  <div class="win hidden" id="win-edge" style="left:160px;top:60px;width:680px;height:460px;">
-    <div class="titlebar"><span class="ttl">🌐 Microsoft Edge</span>
-      <div class="wbtn" onclick="minimize('edge')">—</div>
-      <div class="wbtn" onclick="toggleMax('edge')">▢</div>
-      <div class="wbtn close" onclick="closeWin('edge')">✕</div>
-    </div>
-    <div class="winbody">
-      <div class="edge">
-        <div class="bar"><span>←</span><span>→</span><span>⟳</span><div class="addr">🔒 about:start</div></div>
-        <div class="page"><div style="font-size:40px;">🌐</div><div>Это демонстрационная страница браузера</div></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Settings -->
-  <div class="win hidden" id="win-settings" style="left:300px;top:100px;width:460px;height:380px;">
-    <div class="titlebar"><span class="ttl">⚙️ Параметры</span>
-      <div class="wbtn" onclick="minimize('settings')">—</div>
-      <div class="wbtn" onclick="toggleMax('settings')">▢</div>
-      <div class="wbtn close" onclick="closeWin('settings')">✕</div>
-    </div>
-    <div class="winbody">
-      <div class="settings">
-        <h2>Персонализация</h2>
-        <div class="srow"><span>Цвет акцента</span>
-          <div class="swatches">
-            <div class="sw active" style="background:#0078d4" onclick="setAccent('#0078d4',this)"></div>
-            <div class="sw" style="background:#7a4fd6" onclick="setAccent('#7a4fd6',this)"></div>
-            <div class="sw" style="background:#107c10" onclick="setAccent('#107c10',this)"></div>
-            <div class="sw" style="background:#d13438" onclick="setAccent('#d13438',this)"></div>
-          </div>
-        </div>
-        <div class="srow"><span>Тёмная тема</span><span>Выкл.</span></div>
-        <div class="srow"><span>Обои рабочего стола</span><span>По умолчанию</span></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Recycle bin -->
-  <div class="win hidden" id="win-recycle" style="left:260px;top:120px;width:380px;height:260px;">
-    <div class="titlebar"><span class="ttl">🗑️ Корзина</span>
-      <div class="wbtn" onclick="minimize('recycle')">—</div>
-      <div class="wbtn" onclick="toggleMax('recycle')">▢</div>
-      <div class="wbtn close" onclick="closeWin('recycle')">✕</div>
-    </div>
-    <div class="winbody" style="display:flex;align-items:center;justify-content:center;color:#888;height:100%;">Корзина пуста</div>
-  </div>
+<body data-theme="light">
+<div id="wall"></div>
+<div id="icons"></div>
+<div id="wins"></div>
+<div id="start">
+  <div class="sbox"><span id="sico"></span><input id="q" placeholder="Введите здесь запрос для поиска" autocomplete="off"></div>
+  <div id="sbody"></div>
+  <div class="dots"><i class="on"></i><i></i></div>
+  <div class="sfoot"><div class="user"><span class="av" id="uav"></span>Пользователь</div><button id="pw"></button>
+    <div class="pm" id="pm"><div data-p="sleep">Сон</div><div data-p="off">Завершение работы</div><div data-p="restart">Перезагрузка</div></div></div>
 </div>
-
-<div id="overlay" onclick="closeStart()"></div>
-
-<div id="startmenu">
-  <div id="sm-search">🔍 Поиск приложений, файлов и т.д.</div>
-  <h3>Закреплённые</h3>
-  <div id="pinned-grid">
-    <div class="sm-app" onclick="openWin('explorer');closeStart()"><span class="ico">📁</span>Проводник</div>
-    <div class="sm-app" onclick="openWin('edge');closeStart()"><span class="ico">🌐</span>Edge</div>
-    <div class="sm-app" onclick="openWin('notepad');closeStart()"><span class="ico">📝</span>Блокнот</div>
-    <div class="sm-app" onclick="openWin('settings');closeStart()"><span class="ico">⚙️</span>Параметры</div>
-    <div class="sm-app"><span class="ico">🧮</span>Калькулятор</div>
-    <div class="sm-app"><span class="ico">📷</span>Камера</div>
-    <div class="sm-app"><span class="ico">🎵</span>Музыка</div>
-    <div class="sm-app"><span class="ico">🗺️</span>Карты</div>
-    <div class="sm-app"><span class="ico">📧</span>Почта</div>
-    <div class="sm-app"><span class="ico">🛍️</span>Store</div>
-    <div class="sm-app"><span class="ico">📷</span>Фото</div>
-    <div class="sm-app" onclick="openWin('recycle');closeStart()"><span class="ico">🗑️</span>Корзина</div>
-  </div>
-  <div id="sm-footer">
-    <div class="sm-user"><div class="avatar">👤</div>Пользователь</div>
-    <div id="power-btn">⏻</div>
-  </div>
-</div>
-
-<div id="taskbar">
-  <div id="tb-center">
-    <div class="tb-btn" id="start-btn" onclick="toggleStart()">⊞</div>
-    <div id="search-box">🔍 Поиск</div>
-    <div class="tb-btn" onclick="toggleWin('explorer')">📁</div>
-    <div class="tb-btn" onclick="toggleWin('edge')">🌐</div>
-    <div class="tb-btn" onclick="toggleWin('notepad')">📝</div>
-    <div class="tb-btn" onclick="toggleWin('settings')">⚙️</div>
-  </div>
-  <div id="tray">
-    <span class="ti">∧</span><span class="ti">📶</span><span class="ti">🔊</span><span class="ti">🔋</span>
-    <div id="clock"><div id="time"></div><div id="date"></div></div>
-  </div>
-</div>
-
+<div id="tb"><div id="tbc"></div><div id="tray"></div></div>
+<div id="ctx"></div>
+<div id="shut"></div>
 <script src="script.js"></script>
 </body>
 </html>
