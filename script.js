@@ -69,8 +69,9 @@ function settings(b){
  const C=['#0078d4','#0099bc','#7a4fd6','#c239b3','#d13438','#ca5010','#107c10','#767676'];
  b.innerHTML=`<div class="st"><div class="sn"><div class="su">${I.user}<div><b>Пользователь</b><small>Локальная учётная запись</small></div></div>${['Система','Bluetooth и устройства','Сеть и Интернет','Персонализация','Приложения','Учётные записи','Время и язык'].map((t,i)=>`<div class="${i==3?'on':''}">${t}</div>`).join('')}</div>
  <div class="sp"><h2>Персонализация</h2><h5>Выберите тему</h5><div class="tcs"><div class="tcard" data-t="light"><div class="pv l"></div>Светлая</div><div class="tcard" data-t="dark"><div class="pv d"></div>Тёмная</div></div>
- <h5>Цвет элементов</h5><div class="sws">${C.map(c=>`<div class="sw" data-c="${c}" style="background:${c}"></div>`).join('')}</div></div></div>`;
+ <h5>Фон рабочего стола</h5><div class="wps">${WP.map(w=>`<div class="wp${w===(WS||(document.body.dataset.theme==='dark'?'img19':'img0'))?' on':''}" data-w="${w}"><img src="wallpapers/thumbs/${w}.jpg" alt="" draggable="false"></div>`).join('')}</div><h5>Цвет элементов</h5><div class="sws">${C.map(c=>`<div class="sw" data-c="${c}" style="background:${c}"></div>`).join('')}</div></div></div>`;
  b.querySelectorAll('[data-t]').forEach(x=>x.onclick=()=>setTheme(x.dataset.t));
+ b.querySelectorAll('[data-w]').forEach(x=>x.onclick=()=>setWall(x.dataset.w));
  b.querySelectorAll('[data-c]').forEach(x=>x.onclick=()=>{AC=x.dataset.c;applyAcc()})}
 function calc(b){
  const L=['%','CE','C','⌫','1/x','x²','√','÷','7','8','9','×','4','5','6','−','1','2','3','+','±','0',',','='];
@@ -90,16 +91,13 @@ function calc(b){
   else if(k=='1/x')cur=String(v?+(1/v).toFixed(10):0);else if(k=='x²')cur=String(+(v*v).toFixed(10));else if(k=='√')cur=String(+Math.sqrt(Math.abs(v)).toFixed(10));
   show()})}
 
-/* ---------- wallpaper (Bloom) ---------- */
+/* ---------- wallpapers ---------- */
+const WP=['img0','img19','img20','img21','img22','img23','img24','img25','img26','img27','img32','img33','img34','img35'];
+let WS=null;try{WS=localStorage.getItem('w11w')}catch(e){}
 function drawWall(){
- const d=document.body.dataset.theme==='dark';
- const [b1,b2]=d?['#020b22','#06194a']:['#9dbbdc','#e1ecf7'],[c1,c2,c3]=d?['#2a6bff','#0a2fb8','#030f3c']:['#5aa0ff','#1b56e0','#0a2c9c'];
- let p='';
- for(let r=0;r<3;r++){const n=8-r,rx=118-r*22,ry=250-r*55,cy=-(200-r*46);
-  for(let i=0;i<n;i++)p+=`<ellipse cx="0" cy="${cy}" rx="${rx}" ry="${ry}" transform="rotate(${i*360/n+r*17}) " fill="url(#pg${r})" opacity="${.95-r*.08}" stroke="${c1}" stroke-opacity=".35"/>`}
- $('#wall').innerHTML=`<svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice"><defs><radialGradient id="bg" cx=".5" cy=".55" r=".8"><stop offset="0" stop-color="${b2}"/><stop offset="1" stop-color="${b1}"/></radialGradient>
- ${[0,1,2].map(r=>`<linearGradient id="pg${r}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${r?c2:c1}"/><stop offset="1" stop-color="${r==2?c3:c2}"/></linearGradient>`).join('')}</defs>
- <rect width="1600" height="900" fill="url(#bg)"/><g transform="translate(830 500) scale(1.12)">${p}<circle r="46" fill="${c3}" opacity=".7"/></g></svg>`}
+ const f=WS||(document.body.dataset.theme==='dark'?'img19':'img0');
+ $('#wall').innerHTML=`<img src="wallpapers/${f}.jpg" alt="" draggable="false">`}
+function setWall(f){WS=f;try{localStorage.setItem('w11w',f)}catch(e){}drawWall();document.querySelectorAll('.wp').forEach(x=>x.classList.toggle('on',x.dataset.w===f))}
 
 /* ---------- theme ---------- */
 let AC=null;

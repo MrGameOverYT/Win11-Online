@@ -4,7 +4,7 @@ body{--acc:#0067c0;--tb:rgba(243,243,243,.86);--tbl:rgba(0,0,0,.1);--tx:#1a1a1a;
 body[data-theme=dark]{--tb:rgba(20,30,58,.84);--tbl:rgba(255,255,255,.08);--tx:#fff;--tx2:#c8c8c8;--sm:rgba(30,42,80,.9);--smb:rgba(255,255,255,.1);--card:rgba(255,255,255,.07);--cardb:rgba(255,255,255,.09);--hov:rgba(255,255,255,.08);--foot:rgba(0,0,0,.2);--w:#202020;--wb:#272727;--line:rgba(255,255,255,.1)}
 html,body{height:100%;overflow:hidden;font:14px var(--font);color:var(--tx);user-select:none;-webkit-user-select:none;background:#000}
 svg{display:block}
-#wall{position:fixed;inset:0}#wall svg{width:100%;height:100%}
+#wall{position:fixed;inset:0;background:#0a2a6e}#wall img{width:100%;height:100%;object-fit:cover;display:block}
 #icons{position:fixed;top:4px;left:4px;z-index:1;display:flex;flex-direction:column}
 .di{width:86px;height:94px;padding:6px 2px;display:flex;flex-direction:column;align-items:center;gap:4px;border:1px solid transparent;border-radius:4px;color:#fff;font-size:12px;text-align:center;line-height:1.2;text-shadow:0 1px 3px rgba(0,0,0,.8)}
 .di .ic{position:relative;width:44px;height:44px;flex:none;filter:drop-shadow(0 1px 2px rgba(0,0,0,.3))}.di svg{width:44px;height:44px}
@@ -92,6 +92,8 @@ svg{display:block}
 .pv{height:70px;border-radius:5px;margin-bottom:8px;position:relative;overflow:hidden}.pv::after{content:"";position:absolute;left:0;right:0;bottom:0;height:10px}
 .pv.l{background:linear-gradient(135deg,#9fc3ee,#e9f1fb)}.pv.l::after{background:#f3f3f3}.pv.d{background:linear-gradient(135deg,#071a45,#1f4fd0)}.pv.d::after{background:#202e55}
 .sws{display:flex;gap:10px;flex-wrap:wrap}.sw{width:34px;height:34px;border-radius:5px;border:2px solid transparent}.sw:hover{border-color:var(--tx)}
+
+.wps{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px}.wp{aspect-ratio:16/10;border-radius:6px;overflow:hidden;border:2px solid transparent;background:var(--card)}.wp img{width:100%;height:100%;object-fit:cover;display:block}.wp:hover{border-color:var(--tx2)}.wp.on{border-color:var(--acc)}
 
 /* calculator */
 .calc{display:flex;flex-direction:column;height:100%;background:var(--w);padding:6px}
